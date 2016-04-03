@@ -5,9 +5,11 @@
 #include <iostream>
 
 int main() {
-	int Distance, Capacity;
-	float SCR, PropagationDelay, MessageTransferTime, MessageSize, DataTransmissionTime;
-	const int SpeedOfLight = 299792458;
+	unsigned int Distance;
+	unsigned short Capacity;
+	float SCR, MessageTransferTime, MessageSize, DataTransmissionTime;
+	long double PropagationDelay;
+	const unsigned int SpeedOfLight = 299792458;
 	std::cout << "Message size (Mb): ";
 	std::cin >> MessageSize;
 	std::cout << "Distance (m): ";
@@ -19,5 +21,6 @@ int main() {
 	PropagationDelay = Distance / (SpeedOfLight*SCR);
 	MessageTransferTime = (MessageSize * 8) / Capacity;
 	DataTransmissionTime = PropagationDelay + MessageTransferTime;
-	std::cout << "Result: " << DataTransmissionTime << " sec";
+	std::cout << "Result: " << DataTransmissionTime << " sec" << std::endl;
+	system("pause");
 }
