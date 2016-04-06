@@ -1,5 +1,3 @@
-﻿  stdafx.cpp
-  main.cpp
-  Выполнение анализа кода для C/C++...
-  Создание кода...
+﻿  main.cpp
+c:\projects\datatransmissiontime\main.cpp(50): warning C4244: =: преобразование "float" в "int", возможна потеря данных
   DataTransmissionTime.vcxproj -> C:\Projects\DataTransmissionTime\Debug\DataTransmissionTime.exe

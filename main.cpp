@@ -32,8 +32,9 @@ int main() {
 			DataTransmissionTime = PropagationDelay + MessageTransferTime;
 			break;
 		case 'P':
-			int NumberOfSwitches, PacketSize, NumberOfPackets, HeaderSize, SendingDelayOnSwitch, SwitchingDelayOnSwitch, BuferisationDelayOnSwitch;
+			int NumberOfSwitches, PacketSize, NumberOfPackets, SendingDelayOnSwitch, SwitchingDelayOnSwitch, BuferisationDelayOnSwitch;
 			long double HeaderTransferTime;
+			float HeaderSize;
 			std::cout << "Number of swithes: ";
 			std::cin >> NumberOfSwitches;
 			std::cout << "Packet size (kb): ";
@@ -49,8 +50,8 @@ int main() {
 			NumberOfPackets = MessageSize * 1024 / PacketSize;
 			if (MessageSize * 1024 - NumberOfPackets * PacketSize)
 				NumberOfPackets++;
-			HeaderTransferTime = TransferTime(HeaderSize, Capacity);
-			DataTransmissionTime = (PropagationDelay + HeaderTransferTime + SendingDelayOnSwitch * 1000) * NumberOfPackets + (SwitchingDelayOnSwitch + BuferisationDelayOnSwitch) * 1000 * NumberOfSwitches + MessageTransferTime;
+			HeaderTransferTime = TransferTime(HeaderSize / 1024, Capacity);
+			DataTransmissionTime = PropagationDelay + (HeaderTransferTime + SendingDelayOnSwitch / 1000) * NumberOfPackets + ((SwitchingDelayOnSwitch + BuferisationDelayOnSwitch) / 1000) * NumberOfSwitches + MessageTransferTime;
 			break;
 		default:
 			std::cout << "Only C or P" << std::endl;
