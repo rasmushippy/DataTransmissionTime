@@ -32,9 +32,8 @@ int main() {
 			DataTransmissionTime = PropagationDelay + MessageTransferTime;
 			break;
 		case 'P':
-			int NumberOfSwitches, PacketSize, NumberOfPackets, SendingDelayOnSwitch, SwitchingDelayOnSwitch, BuferisationDelayOnSwitch;
-			long double HeaderTransferTime;
-			float HeaderSize;
+			int NumberOfSwitches, PacketSize, NumberOfPackets, SendingDelayOnSwitch;
+			long double HeaderSize, HeaderTransferTime, SwitchingDelayOnSwitch, BuferisationDelayOnSwitch;
 			std::cout << "Number of swithes: ";
 			std::cin >> NumberOfSwitches;
 			std::cout << "Packet size (kb): ";
