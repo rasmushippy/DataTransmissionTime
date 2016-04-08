@@ -1,9 +1,8 @@
-//Время передачи данных в сетях с коммутацией каналов складывается из задержки распространения сигнала и задержки передачи сообщения.
-//Задержка распространения равна отношению дистанции к скорости передачи электромагнитных волн в определённой среде передачи, которая равна 0,6-0,9 скорость света.
-//Задержка передачи собственно сообщения равна отношению размера сообщения к пропускной способности канала.
+//Калькулятор для определения времени передачиданных с заданным объёмом
 
 #include <iostream>
 
+//Время передачи определяется путём отношения объёма передаваемого блока к пропускной способности
 long double TransferTime(float Size, unsigned short Capacity){
 return (Size * 8 / Capacity);
 }
@@ -15,6 +14,7 @@ int main() {
 	long double PropagationDelay, DataTransmissionTime, MessageTransferTime;
 	char mode;
 	const unsigned int SpeedOfLight = 299792458;
+
 	std::cout << "Choose mode ((C)hanel Switching or (P)acket Swithing): ";
 	std::cin >> mode;
 	std::cout << "Message size (Mb): ";
@@ -25,15 +25,25 @@ int main() {
 	std::cin >> Capacity;
 	std::cout << "Speed change ratio (0.6-0.9): ";
 	std::cin >> SpeedChangeRatio;
+
+	//Время задержки распростраения сигнала представляет собой отношение расстояния к скорости распространения сигнала в определённой среде.
+	//Скорость указывается в виде доли от скорости света. 
 	PropagationDelay = Distance / (SpeedOfLight*SpeedChangeRatio);
+
 	MessageTransferTime = TransferTime(MessageSize, Capacity);
+
 	switch (mode){
+		//Расчёт времени передачи при коммутации каналов. 
 		case 'C':
+			//Время передачи данных равно сумме времени задержки распространения сигнала и времени передачи собственно сообщения
 			DataTransmissionTime = PropagationDelay + MessageTransferTime;
 			break;
+
+		//Расчёт времени передачи при коммутации пакетов.
 		case 'P':
 			int NumberOfSwitches, PacketSize, NumberOfPackets, SendingDelayOnSwitch;
 			long double HeaderSize, HeaderTransferTime, SwitchingDelayOnSwitch, BuferisationDelayOnSwitch;
+
 			std::cout << "Number of swithes: ";
 			std::cin >> NumberOfSwitches;
 			std::cout << "Packet size (kb): ";
@@ -46,15 +56,22 @@ int main() {
 			std::cin >> SwitchingDelayOnSwitch;
 			std::cout << "Buferisation Delay on Switch (ms): ";
 			std::cin >> BuferisationDelayOnSwitch;
+
+			//Определение количества пакетов необходимых для передачи данных.
 			NumberOfPackets = MessageSize * 1024 / PacketSize;
 			if (MessageSize * 1024 - NumberOfPackets * PacketSize)
 				NumberOfPackets++;
+
 			HeaderTransferTime = TransferTime(HeaderSize / 1024, Capacity);
-			DataTransmissionTime = PropagationDelay + (HeaderTransferTime + SendingDelayOnSwitch / 1000) * NumberOfPackets + ((SwitchingDelayOnSwitch + BuferisationDelayOnSwitch) / 1000) * NumberOfSwitches + MessageTransferTime;
+
+			//Определение времени передачи данных по сетям с коммутацией пакетов аналогично сетям с коммутацией каналов, но дополнительно учитывается время передачи заголовков пакетов и задержки перед отправкой каждого пакета, а также задержка коммутации и буферизации на каждом свитче.
+			DataTransmissionTime = PropagationDelay + MessageTransferTime + (HeaderTransferTime + SendingDelayOnSwitch / 1000) * NumberOfPackets + ((SwitchingDelayOnSwitch + BuferisationDelayOnSwitch) / 1000) * NumberOfSwitches;
 			break;
+
 		default:
 			std::cout << "Only C or P" << std::endl;
 	}
+
 	std::cout << "Result: " << DataTransmissionTime << " sec" << std::endl;
 	system("pause");
 }
