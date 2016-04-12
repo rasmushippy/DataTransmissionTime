@@ -1,3 +1,6 @@
 ﻿  main.cpp
-c:\projects\datatransmissiontime\main.cpp(50): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+c:\projects\datatransmissiontime\main.cpp(61): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+c:\projects\datatransmissiontime\main.cpp(65): warning C4244: аргумент: преобразование "long double" в "float", возможна потеря данных
+c:\projects\datatransmissiontime\main.cpp(75): warning C4244: =: преобразование "long double" в "unsigned int", возможна потеря данных
+c:\projects\datatransmissiontime\main.cpp(76): warning C4244: =: преобразование "long double" в "unsigned int", возможна потеря данных
   DataTransmissionTime.vcxproj -> C:\Projects\DataTransmissionTime\Debug\DataTransmissionTime.exe

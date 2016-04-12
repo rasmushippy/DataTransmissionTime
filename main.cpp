@@ -32,15 +32,15 @@ int main() {
 
 	MessageTransferTime = TransferTime(MessageSize, Capacity);
 
-	switch (mode){
-		//Расчёт времени передачи при коммутации каналов. 
-		case 'C':
+	switch (tolower(mode)){
+		//Расчёт времени передачи при коммутации каналов.
+		case 'c':
 			//Время передачи данных равно сумме времени задержки распространения сигнала и времени передачи собственно сообщения
 			DataTransmissionTime = PropagationDelay + MessageTransferTime;
 			break;
 
 		//Расчёт времени передачи при коммутации пакетов.
-		case 'P':
+		case 'p':
 			int NumberOfSwitches, PacketSize, NumberOfPackets, SendingDelayOnSwitch;
 			long double HeaderSize, HeaderTransferTime, SwitchingDelayOnSwitch, BuferisationDelayOnSwitch;
 

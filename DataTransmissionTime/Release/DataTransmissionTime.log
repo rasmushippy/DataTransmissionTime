@@ -1,9 +1,11 @@
 ﻿  main.cpp
 ..\main.cpp(61): warning C4244: =: преобразование "float" в "int", возможна потеря данных
 ..\main.cpp(65): warning C4244: аргумент: преобразование "long double" в "float", возможна потеря данных
+..\main.cpp(75): warning C4244: =: преобразование "long double" в "unsigned int", возможна потеря данных
+..\main.cpp(76): warning C4244: =: преобразование "long double" в "unsigned int", возможна потеря данных
   Создание кода
+  Создание кода завершено
   1 of 19 functions ( 5.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
-  Создание кода завершено
+    3 functions had inline decision re-evaluated but remain unchanged
   DataTransmissionTime.vcxproj -> C:\Projects\DataTransmissionTime\Release\DataTransmissionTime.exe
