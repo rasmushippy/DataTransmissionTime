@@ -8,7 +8,7 @@ return (Size * 8 / Capacity);
 }
 
 int main() {
-	unsigned int Distance;
+	unsigned int Distance, DataTransmissionTimeSec, DataTransmissionTimeMsec;
 	unsigned short Capacity;
 	float SpeedChangeRatio, MessageSize;
 	long double PropagationDelay, DataTransmissionTime, MessageTransferTime;
@@ -71,7 +71,16 @@ int main() {
 		default:
 			std::cout << "Only C or P" << std::endl;
 	}
-
-	std::cout << "Result: " << DataTransmissionTime << " sec" << std::endl;
+	
+	DataTransmissionTimeSec = DataTransmissionTime;
+	DataTransmissionTimeMsec = (DataTransmissionTime - DataTransmissionTimeSec) * 1000;
+	
+	if ((DataTransmissionTimeSec > 0) && (DataTransmissionTimeMsec))
+		std::cout << "Result: " << DataTransmissionTimeSec << " sec " << DataTransmissionTimeMsec << " ms"<< std::endl;
+	else if ((DataTransmissionTimeSec > 0) && (DataTransmissionTimeMsec == 0))
+		std::cout << "Result: " << DataTransmissionTimeSec << " sec" << std::endl;
+	else if ((DataTransmissionTimeSec == 0) && (DataTransmissionTimeMsec))
+		std::cout << "Result: " << DataTransmissionTimeMsec << " ms"<< std::endl;
+		
 	system("pause");
 }
